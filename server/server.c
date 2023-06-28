@@ -1,23 +1,19 @@
 #include <fcgi_stdio.h>
-#include <stdlib.h>
-#include <stdio.h>
 
-int main() {
-    void handle_request()
+void handle_request()
+{
+    printf("Content-type: text/html\r\n\r\n");
+    printf("<html><head><title>Hello World</title></head><body>");
+    printf("<h1>Hello World!</h1>");
+    printf("</body></html>");
+}
+
+int main()
+{
+    while (FCGI_Accept() >= 0)  // Непрерывная обработка запросов, пока FastCGI-сервер не будет остановлен или произойдет ошибка.
     {
-        printf("Content-type: text/html\r\n\r\n");
-        printf("<html><head><title>Hello World</title></head><body>");
-        printf("<h1>Hello World!</h1>");
-        printf("</body></html>");
+        handle_request();
     }
 
-    int main()
-    {
-        while (FCGI_Accept() >= 0)  // Непрерывная обработка запросов, пока FastCGI-сервер не будет остановлен или произойдет ошибка.
-        {
-            handle_request();
-        }
-
-        return 0;
-    }
+    return 0;
 }

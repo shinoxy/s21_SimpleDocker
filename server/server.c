@@ -1,4 +1,4 @@
-#include <fcgi_stdio.h>
+s#include <fcgi_stdio.h>
 
 void handle_request()
 {
